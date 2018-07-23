@@ -18,6 +18,8 @@ package com.cjwwdev.cucumber.utils
 import org.openqa.selenium.{By, WebDriver}
 import org.scalatest.{Assertion, Matchers}
 
+import scala.util.{Failure, Success, Try}
+
 trait VerificationUtils extends Matchers {
 
   val driver: WebDriver
@@ -29,6 +31,14 @@ trait VerificationUtils extends Matchers {
   def verifyErrorPanelIsDisplayed(`class`: String): Assertion = assert(driver.findElement(By.className(`class`)).isDisplayed)
 
   def verifyDivIsDisplayed(id: String): Assertion = assert(driver.findElement(By.id(id)).isDisplayed)
+
+  def verifyDivIsNotDisplayed(id: String): Assertion = {
+    val displayed = Try(driver.findElement(By.id(id)).isDisplayed) match {
+      case Success(bool) => bool
+      case Failure(_)    => false
+    }
+    assert(!displayed)
+  }
 
   def verifyText(id: String, text: String): Assertion = assert(driver.findElement(By.id(id)).getText.equals(text))
 
