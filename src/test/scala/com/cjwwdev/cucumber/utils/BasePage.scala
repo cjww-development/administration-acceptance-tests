@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.cjwwdev.cucumber.utils
 
-val testsName = "administration-acceptance-tests"
+object BasePage extends BasePage
 
-lazy val testPack = Project(testsName, file("."))
-  .settings(
-    version             :=  "0.1.0",
-    scalaVersion        :=  "2.11.11",
-    scalacOptions       ++= Seq("-unchecked", "-deprecation"),
-    resolvers           ++= Seq(
-      "Typesafe repository"    at "http://repo.typesafe.com/typesafe/releases/",
-      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-    ),
-    libraryDependencies :=  TestDependencies()
-  )
+trait BasePage extends NavigationUtils with VerificationUtils with DataEntryUtils {
+
+  override val driver = SingletonDriver.getInstance()
+
+  val baseUrl: String = "http://localhost:9875/administration"
+
+  def shutdownBrowser(): Unit = driver.quit()
+}
