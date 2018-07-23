@@ -24,6 +24,6 @@ import org.junit.runner.RunWith
   features = Array("src/test/resources/features"),
   glue     = Array("com.cjwwdev.cucumber.stepdefs"),
   format   = Array("pretty", "html:target/cucumber", "json:target/cucumber.json"),
-  tags     = Array("@LoginFail, @Login, @AdminDash, @RegisterAndView, @SHA512, @DataSec, @Shutdown")
+  tags     = Array("@LoginFail, @Login, @AdminDash, @RegisterAndView, @SHA512, @DataSec, @Headers, @Shutdown")
 )
 class Runner
