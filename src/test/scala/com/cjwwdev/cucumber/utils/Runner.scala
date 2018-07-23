@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.cjwwdev.cucumber.utils
 
-val testsName = "administration-acceptance-tests"
+import cucumber.api.CucumberOptions
+import cucumber.api.junit.Cucumber
+import org.junit.runner.RunWith
 
-lazy val testPack = Project(testsName, file("."))
-  .settings(
-    version             :=  "0.1.0",
-    scalaVersion        :=  "2.11.11",
-    scalacOptions       ++= Seq("-unchecked", "-deprecation"),
-    resolvers           ++= Seq(
-      "Typesafe repository"    at "http://repo.typesafe.com/typesafe/releases/",
-      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-    ),
-    libraryDependencies :=  TestDependencies()
-  )
+@RunWith(classOf[Cucumber])
+@CucumberOptions(
+  features = Array("src/test/resources/features"),
+  glue     = Array("com.cjwwdev.cucumber.stepdefs"),
+  format   = Array("pretty", "html:target/cucumber", "json:target/cucumber.json"),
+  tags     = Array("@LoginFail, @Login, @AdminDash, @RegisterAndView, @SHA512, @DataSec, @Shutdown")
+)
+class Runner

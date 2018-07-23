@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-val testsName = "administration-acceptance-tests"
+package com.cjwwdev.cucumber.stepdefs
 
-lazy val testPack = Project(testsName, file("."))
-  .settings(
-    version             :=  "0.1.0",
-    scalaVersion        :=  "2.11.11",
-    scalacOptions       ++= Seq("-unchecked", "-deprecation"),
-    resolvers           ++= Seq(
-      "Typesafe repository"    at "http://repo.typesafe.com/typesafe/releases/",
-      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-    ),
-    libraryDependencies :=  TestDependencies()
-  )
+import com.cjwwdev.cucumber.utils.BasePage
+import cucumber.api.scala.{EN, ScalaDsl}
+
+class QuickLinksStepDef extends ScalaDsl with EN with BasePage {
+  And("""^all side bar links are correct for the root user$""") { () =>
+    verifyText("dashboard-link",      "Dashboard")
+    verifyText("registration-link",   "Register user")
+    verifyText("view-all-users-link", "View users")
+    verifyText("enc-dec-link",        "Encrypt and decrypt")
+  }
+}
