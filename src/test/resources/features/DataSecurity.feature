@@ -10,7 +10,7 @@ Feature: Data security
 
   Scenario: The user wants to encrypt a string using data sec
     Given the user is on the data sec page
-    And the user has chosen encrypt and string
+    And the user has chosen encrypt
     And has entered the data they want to encrypt
       |     key     |       value       |
       |     data    |       test        |
@@ -19,7 +19,7 @@ Feature: Data security
 
   Scenario: The user wants to encrypt json using data sec
     Given the user is on the data sec page
-    And the user chosen encrypt and json
+    And the user has chosen encrypt
     And has entered the data they want to encrypt
       |     key     |       value       |
       |     data    |  {"abc" : "xyz"}  |
@@ -28,7 +28,7 @@ Feature: Data security
 
   Scenario: The users want to decrypt a string using data sec
     Given the user is on the data sec page
-    And the user chosen decrypt and string
+    And the user chosen decrypt
     And has entered the data they want to decrypt
       |     key     |          value          |
       |     data    | YjExJRyt-AGFTN_tlkgRIA  |
@@ -37,7 +37,7 @@ Feature: Data security
 
   Scenario: The users want to decrypt json using data sec
     Given the user is on the data sec page
-    And the user chosen decrypt and json
+    And the user chosen decrypt
     And has entered the data they want to decrypt
       |     key     |           value          |
       |     data    |  2362v9gGF4XwOTpVEByArQ  |

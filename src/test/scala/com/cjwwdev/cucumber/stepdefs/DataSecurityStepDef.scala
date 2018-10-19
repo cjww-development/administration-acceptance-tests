@@ -27,24 +27,12 @@ class DataSecurityStepDef extends ScalaDsl with EN with BasePage {
     verifyPageByTitle("main-heading", "Encrypt or decrypt using data security")
   }
 
-  And("""^the user has chosen encrypt and string$""") { () =>
+  And("""^the user has chosen encrypt$""") { () =>
     clickButtonById("mode1-label")
-    clickButtonById("data-type1-label")
   }
 
-  And("""^the user chosen encrypt and json$""") { () =>
-    clickButtonById("mode1-label")
-    clickButtonById("data-type2-label")
-  }
-
-  And("""^the user chosen decrypt and string$""") { () =>
+  And("""^the user chosen decrypt$""") { () =>
     clickButtonById("mode2-label")
-    clickButtonById("data-type1-label")
-  }
-
-  And("""^the user chosen decrypt and json$""") { () =>
-    clickButtonById("mode2-label")
-    clickButtonById("data-type2-label")
   }
 
   And("""^has entered the data they want to encrypt$""") { dataTable: DataTable =>
