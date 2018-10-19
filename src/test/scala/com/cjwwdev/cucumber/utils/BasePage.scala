@@ -15,6 +15,13 @@
  */
 package com.cjwwdev.cucumber.utils
 
+import java.util.UUID
+
+import org.openqa.selenium.By
+import org.scalatest.Assertion
+
+import scala.util.Try
+
 object BasePage extends BasePage
 
 trait BasePage extends NavigationUtils with VerificationUtils with DataEntryUtils {
@@ -24,4 +31,6 @@ trait BasePage extends NavigationUtils with VerificationUtils with DataEntryUtil
   val baseUrl: String = "http://localhost:9875/administration"
 
   def shutdownBrowser(): Unit = driver.quit()
+
+  def uuidValidator(id: String): Assertion = assert(Try(UUID.fromString(driver.findElement(By.id(id)).getText)).isSuccess)
 }

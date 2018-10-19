@@ -13,17 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cjwwdev.cucumber.utils
 
-import cucumber.api.CucumberOptions
-import cucumber.api.junit.Cucumber
-import org.junit.runner.RunWith
+package com.cjwwdev.cucumber.stepdefs
 
-@RunWith(classOf[Cucumber])
-@CucumberOptions(
-  features = Array("src/test/resources/features"),
-  glue     = Array("com.cjwwdev.cucumber.stepdefs"),
-  format   = Array("pretty", "html:target/cucumber", "json:target/cucumber.json"),
-  tags     = Array("@LoginFail, @Login, @AdminDash, @RegisterAndView, @SHA512, @DataSec, @Headers, @GenerateUUID, @Shutdown")
-)
-class Runner
+import com.cjwwdev.cucumber.utils.BasePage
+import cucumber.api.scala.{EN, ScalaDsl}
+
+class UUIDStepDef extends ScalaDsl with EN with BasePage {
+
+  Given("""^the user is on the uuid page$""") { () =>
+    navigateToPage(s"$baseUrl/generate-uuid")
+    verifyPageByTitle("main-heading", "Generate a UUID")
+  }
+
+  And("""^the user has clicked generate$""") { () =>
+    clickButtonById("generate-uuid")
+    verifyPageByTitle("main-heading", "Generate a UUID")
+  }
+
+  Then("""^the page should display a UUID$""") { () =>
+    uuidValidator("generated-uuid")
+  }
+}
